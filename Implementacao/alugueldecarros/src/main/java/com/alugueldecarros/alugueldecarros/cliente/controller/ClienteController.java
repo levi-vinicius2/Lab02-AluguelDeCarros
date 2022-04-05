@@ -46,4 +46,14 @@ public class ClienteController {
         clienteRepo.save(cliente);
         return "redirect:/clientes";
     }
+
+    @GetMapping("/clientes/excluir/{id}")
+    public String deletarCliente(@PathVariable("id") long id){
+        Optional<Cliente> clienteOpt = clienteRepo.findById(id);
+        if (clienteOpt.isEmpty()){
+            throw new IllegalArgumentException("Cliente invalido!");
+        }
+        clienteRepo.delete(clienteOpt.get());
+        return "redirect:/clientes";
+    }
 }
