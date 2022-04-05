@@ -6,7 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 @Controller
 public class ClienteController {
@@ -25,6 +28,16 @@ public class ClienteController {
 
     @GetMapping("/clientes/nova")
     public String novoCliente(@ModelAttribute("cliente") Cliente cliente) {
+        return "clientes/form";
+    }
+
+    @GetMapping("/clientes/{id}")
+    public String alterarCliente(@PathVariable("id") long id, Model model){
+        Optional<Cliente> clienteOpt = clienteRepo.findById(id);
+        if (clienteOpt.isEmpty()){
+            throw new IllegalArgumentException("Cliente invalido!");
+        }
+        model.addAttribute("cliente", clienteOpt.get());
         return "clientes/form";
     }
 
