@@ -2,8 +2,12 @@ package com.alugueldecarros.alugueldecarros;
 
 import com.alugueldecarros.alugueldecarros.cliente.model.Cliente;
 import com.alugueldecarros.alugueldecarros.cliente.model.ClienteRepositorio;
+import com.alugueldecarros.alugueldecarros.usuario.model.Role;
+import com.alugueldecarros.alugueldecarros.usuario.model.Usuario;
+import com.alugueldecarros.alugueldecarros.usuario.model.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -14,6 +18,12 @@ public class PopulacaoInicialBanco implements CommandLineRunner {
 
     @Autowired
     private ClienteRepositorio clienteRepo;
+
+    @Autowired
+    private UsuarioRepositorio usuarioRepo;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -36,6 +46,16 @@ public class PopulacaoInicialBanco implements CommandLineRunner {
 //
 //        clienteRepo.save(c1);
 //        clienteRepo.save(c2);
+
+        Usuario u1 = new Usuario("admin", passwordEncoder.encode("admin"));
+        u1.setRole(Role.ADMIN.getNome());
+        usuarioRepo.save(u1);
+
+        Usuario u2 = new Usuario("joao", passwordEncoder.encode("joao"));
+        u2.setRole(Role.CLIENTE.getNome());
+        usuarioRepo.save(u2);
+
+//
 
     }
 }
