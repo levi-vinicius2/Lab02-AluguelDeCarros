@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.edu.ifpr.paranavai</groupId>
-	<artifactId>poswebsys</artifactId>
+	<artifactId>alugueldecarros</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>poswebsys</name>
-	<description>Exemplo de CRUD com Spring Boot</description>
+	<name>alugueldecarros</name>
+	<description>Sistema de aluguel de carros</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -41,9 +41,8 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -62,6 +61,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.6.7.Final</version>
 		</dependency>
 	</dependencies>
 
