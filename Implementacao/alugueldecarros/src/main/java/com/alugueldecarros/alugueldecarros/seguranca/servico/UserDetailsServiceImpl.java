@@ -1,7 +1,7 @@
 package com.alugueldecarros.alugueldecarros.seguranca.servico;
 
-import com.alugueldecarros.alugueldecarros.usuario.model.Usuario;
-import com.alugueldecarros.alugueldecarros.usuario.model.UsuarioRepositorio;
+import com.alugueldecarros.alugueldecarros.model.Usuario;
+import com.alugueldecarros.alugueldecarros.repositories.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

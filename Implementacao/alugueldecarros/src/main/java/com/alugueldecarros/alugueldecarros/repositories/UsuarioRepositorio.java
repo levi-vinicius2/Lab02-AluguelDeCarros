@@ -1,5 +1,6 @@
-package com.alugueldecarros.alugueldecarros.usuario.model;
+package com.alugueldecarros.alugueldecarros.repositories;
 
+import com.alugueldecarros.alugueldecarros.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

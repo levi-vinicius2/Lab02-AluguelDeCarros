@@ -1,4 +1,4 @@
-package com.alugueldecarros.alugueldecarros.cliente.model;
+package com.alugueldecarros.alugueldecarros.model;
 
 import javax.persistence.*;
 import java.util.Objects;

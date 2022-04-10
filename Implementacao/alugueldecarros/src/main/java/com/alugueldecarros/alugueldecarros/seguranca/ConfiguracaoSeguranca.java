@@ -1,6 +1,6 @@
 package com.alugueldecarros.alugueldecarros.seguranca;
 
-import com.alugueldecarros.alugueldecarros.usuario.model.Role;
+import com.alugueldecarros.alugueldecarros.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

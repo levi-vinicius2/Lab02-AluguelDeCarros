@@ -1,7 +1,7 @@
-package com.alugueldecarros.alugueldecarros.cliente.controller;
+package com.alugueldecarros.alugueldecarros.controller;
 
-import com.alugueldecarros.alugueldecarros.cliente.model.Cliente;
-import com.alugueldecarros.alugueldecarros.cliente.model.ClienteRepositorio;
+import com.alugueldecarros.alugueldecarros.model.Cliente;
+import com.alugueldecarros.alugueldecarros.repositories.ClienteRepositorio;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

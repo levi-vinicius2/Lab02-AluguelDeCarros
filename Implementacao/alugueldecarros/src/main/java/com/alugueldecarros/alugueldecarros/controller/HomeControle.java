@@ -1,4 +1,4 @@
-package com.alugueldecarros.alugueldecarros.core.controller;
+package com.alugueldecarros.alugueldecarros.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

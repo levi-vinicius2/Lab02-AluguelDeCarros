@@ -1,4 +1,4 @@
-package com.alugueldecarros.alugueldecarros.usuario.model;
+package com.alugueldecarros.alugueldecarros.model;
 
 import java.util.ArrayList;
 import java.util.List;

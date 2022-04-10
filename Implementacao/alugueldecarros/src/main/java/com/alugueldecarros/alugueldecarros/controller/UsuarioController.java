@@ -1,13 +1,13 @@
-package com.alugueldecarros.alugueldecarros.usuario.controller;
+package com.alugueldecarros.alugueldecarros.controller;
 
-import com.alugueldecarros.alugueldecarros.usuario.model.UsuarioRepositorio;
+import com.alugueldecarros.alugueldecarros.model.Role;
+import com.alugueldecarros.alugueldecarros.repositories.UsuarioRepositorio;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
 import java.util.List;
-import com.alugueldecarros.alugueldecarros.usuario.model.Role;
 
 
 @Controller
