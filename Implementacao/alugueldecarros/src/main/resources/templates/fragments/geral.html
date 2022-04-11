@@ -31,7 +31,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item">
 							<form name="logoutForm" th:action="@{/logout}" method="post">
-								<label>Olá <span sec:authentication="name">Usuário</span></label>
+								<label>Olá <span sec:authentication property="name">Usuário</span></label>
 								<input class="btn btn-outline-danger" type="submit" value="Sair" />
 							</form>
 						</li>

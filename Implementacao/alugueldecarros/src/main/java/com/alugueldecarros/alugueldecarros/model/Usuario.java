@@ -80,4 +80,6 @@ public class Usuario {
         Usuario other = (Usuario) obj;
         return id == other.id;
     }
+
+
 }

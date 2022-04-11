@@ -6,7 +6,8 @@ import java.util.List;
 public enum Role {
 	
 	ADMIN("ADMIN"),
-	CLIENTE("CLIENTE");
+	CLIENTE("CLIENTE"),
+	AGENTE("AGENTE");
 	
 	private String nome;
 

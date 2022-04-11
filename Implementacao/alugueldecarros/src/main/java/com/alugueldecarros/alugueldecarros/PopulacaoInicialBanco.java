@@ -1,8 +1,12 @@
 package com.alugueldecarros.alugueldecarros;
 
+import com.alugueldecarros.alugueldecarros.model.Automovel;
+import com.alugueldecarros.alugueldecarros.model.Pedido;
 import com.alugueldecarros.alugueldecarros.model.Role;
 import com.alugueldecarros.alugueldecarros.model.Usuario;
+import com.alugueldecarros.alugueldecarros.repositories.AutomovelRepositorio;
 import com.alugueldecarros.alugueldecarros.repositories.ClienteRepositorio;
+import com.alugueldecarros.alugueldecarros.repositories.PedidoRepositorio;
 import com.alugueldecarros.alugueldecarros.repositories.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,6 +24,16 @@ public class PopulacaoInicialBanco implements CommandLineRunner {
 
     @Autowired
     private UsuarioRepositorio usuarioRepo;
+
+
+    @Autowired
+    private PedidoRepositorio pedidoRepo;
+
+
+
+    @Autowired
+    private AutomovelRepositorio automovelRepo;
+
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -53,6 +67,31 @@ public class PopulacaoInicialBanco implements CommandLineRunner {
 //        Usuario u2 = new Usuario("joao", passwordEncoder.encode("joao"));
 //        u2.setRole(Role.CLIENTE.getNome());
 //        usuarioRepo.save(u2);
+//
+//        Automovel a1 = new Automovel("ABC12YR3");
+//        a1.setAno(2021);
+//        a1.setMarca("Toyota");
+//        a1.setModelo("Corolla");
+//        a1.setPlaca("AAA-1234");
+//        Automovel a2 = new Automovel("ABC22122");
+//        a2.setAno(2020);
+//        a2.setMarca("Honda");
+//        a2.setModelo("Fit");
+//        a2.setPlaca("BBB-5444");
+//        Automovel a3 = new Automovel("AYC2C2A2");
+//        a3.setAno(2019);
+//        a3.setMarca("Renault");
+//        a3.setModelo("Logan");
+//        a3.setPlaca("GGG-3421");
+//        automovelRepo.save(a1);
+//        automovelRepo.save(a2);
+//        automovelRepo.save(a3);
+//
+//
+//        Pedido p1 = new Pedido(u2,a1);
+//        Pedido p2 = new Pedido(u2,a3);
+//        pedidoRepo.save(p1);
+//        pedidoRepo.save(p2);
 
 
     }
