@@ -68,6 +68,13 @@ public class Pedido {
         this.status = status;
     }
 
+    public String getNomeAutomovel() {
+        if (automovel != null) {
+            return automovel.toString();
+        }
+        return "";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

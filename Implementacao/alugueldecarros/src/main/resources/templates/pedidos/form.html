@@ -3,39 +3,41 @@
 <head>
     <meta charset="UTF-8" />
     <title>Sistema de Aluguel de Carros</title>
+
+    <!--/*/ <th:block th:include="fragments/geral.html :: headerfiles">
+            </th:block> /*/-->
+
     <script type="text/javascript">
 	$(function() {
-		$("#nomeCidade").autocomplete({
-			source: "carrosDisponiveis",
-			minLength: 1,
+		$("#nomeDepartamento").autocomplete({
+			source: "automovelNomeAutoComplete",
+			minLength: 3,
 			select: function(event, ui) {
 				this.value = ui.item.label;
-				$("#idCarro").val(ui.item.value);
+				$("#idDepartamento").val(ui.item.value);
 				return false;
 			}
+		});
 	});
-    </script>
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-          crossorigin="anonymous">
+</script>
+
 </head>
 <body>
-<div class="container my-2">
-    <h1>Sistema de Aluguel de Carros</h1>
-    <hr>
-    <h2>Fazer Pedido</h2>
+<header th:insert="fragments/geral.html :: header"> </header>
 
+<div class="container my-2">
+    <h2>Alterar Papel do Usuário</h2>
     <form action="#" th:action="@{/pedidos/salvar}" th:object="${pedido}" method="POST">
-        <input id="carro" type="text" th:field="*{nomeCarro}" placeholder="Carro" class="form-control mb-4 col-4">
-        <input id="idCarro" type="hidden" th:field="*{carro}" class="form-control mb-4 col-4">
-        <input type="number" step="any" th:field="*{valor}" placeholder="Valor" class="form-control mb-4 col-4">
-        <input type="text" th:field="*{Tipo do contrato}" placeholder="Tipo do Contrato" class="form-control mb-4 col-4">
+        <input type="hidden" id="id" th:field="*{id}">
+
+        <span th:if="${#fields.hasErrors('automovel')}" th:errors="*{automovel}" class="text-danger"></span>
+            <input id="nomeAutomovel" type="text" th:field="*{nomeAutomovel}" placeholder="Automovel" class="form-control mb-4 col-4">
+        <input id="idAutomovel" type="hidden" th:field="*{automovel}" class="form-control mb-4 col-4">
 
         <button type="submit" class="btn btn-info col-2">Salvar</button>
     </form>
     <hr>
-    <a th:href="@{/pedidos}">Retornar para a lista de pedidos</a>
+    <a th:href="@{/pedidos}">Voltar para a lista de pedidos</a>
 </div>
 </body>
 </html>

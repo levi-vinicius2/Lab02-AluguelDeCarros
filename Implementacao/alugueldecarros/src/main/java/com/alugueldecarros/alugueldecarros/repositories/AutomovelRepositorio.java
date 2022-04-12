@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AutomovelRepositorio extends JpaRepository<Automovel, Long> {
 
-//    @Query("select d from Automovel d where lower(d.nome) like lower(concat(:termo, '%'))")
-//    List<Automovel> searchByNome(@Param("termo") String termo);
+    @Query("select d from Automovel d where lower(d.marca) like lower(concat(:termo, '%'))")
+    List<Automovel> searchByNome(@Param("termo") String termo);
 }

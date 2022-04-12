@@ -4,6 +4,7 @@ import com.alugueldecarros.alugueldecarros.model.Automovel;
 import com.alugueldecarros.alugueldecarros.model.Cliente;
 import com.alugueldecarros.alugueldecarros.model.Pedido;
 import com.alugueldecarros.alugueldecarros.model.Usuario;
+import com.alugueldecarros.alugueldecarros.model.dtos.AutoCompleteDTO;
 import com.alugueldecarros.alugueldecarros.repositories.AutomovelRepositorio;
 import com.alugueldecarros.alugueldecarros.repositories.PedidoRepositorio;
 import com.alugueldecarros.alugueldecarros.repositories.UsuarioRepositorio;
@@ -23,7 +24,7 @@ public class PedidoController {
 
     private PedidoRepositorio pedidoRepo;
     private AutomovelRepositorio automovelRepo;
-    private List<Automovel> automoveis = new ArrayList<>();
+    private List<Automovel> automoveisFiltrados = new ArrayList<>();
 
     @Autowired
     private UsuarioRepositorio usuarioRepo;
@@ -73,22 +74,25 @@ public class PedidoController {
         return "redirect:/pedidos";
     }
 
-//    @RequestMapping("/pedidos/form/carrosDisponiveis")
-//    @ResponseBody
-//    public List<AutoCompleteDTO> cidadesNomeAutoComplete(@RequestParam(value="term", required = false, defaultValue = "") String term) {
-//        List<carros> carrosDisponiveis = new ArrayList<>();
-//
-//        try {
-//            if(term.length() >= 1) {
-//                automoveis = automovelRepo.searchByNome(term);
-//            }
-//
-//            for (Automovel automovel : automoveis) {
-//                    carrosDisponiveis.add(automovel.toString());
-//            }
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//        return carrosDisponiveis;
-//    }
+    @RequestMapping("/pedidos/automovelNomeAutoComplete")
+    @ResponseBody
+    public List<AutoCompleteDTO> automovelNomeAutoComplete(@RequestParam(value="term", required = false, defaultValue = "") String term) {
+        List<AutoCompleteDTO> sugestoes = new ArrayList<>();
+
+        try {
+            if(term.length() >= 3) {
+                automoveisFiltrados = automovelRepo.searchByNome(term);
+            }
+
+            for (Automovel automovel : automoveisFiltrados) {
+                if (automovel.toString().toLowerCase().contains(term.toLowerCase())) {
+                    AutoCompleteDTO dto = new AutoCompleteDTO(automovel.toString(), Long.toString(automovel.getId()));
+                    sugestoes.add(dto);
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return sugestoes;
+    }
 }
