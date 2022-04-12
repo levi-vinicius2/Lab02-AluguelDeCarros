@@ -22,6 +22,8 @@ import java.util.Optional;
 public class PedidoController {
 
     private PedidoRepositorio pedidoRepo;
+    private AutomovelRepositorio automovelRepo;
+    private List<Automovel> automoveis = new ArrayList<>();
 
     @Autowired
     private UsuarioRepositorio usuarioRepo;
@@ -69,5 +71,24 @@ public class PedidoController {
         }
         pedidoRepo.delete(PedidoOpt.get());
         return "redirect:/pedidos";
+    }
+
+    @RequestMapping("/pedidos/form/carrosDisponiveis")
+    @ResponseBody
+    public List<AutoCompleteDTO> cidadesNomeAutoComplete(@RequestParam(value="term", required = false, defaultValue = "") String term) {
+        List<carros> carrosDisponiveis = new ArrayList<>();
+
+        try {
+            if(term.length() >= 1) {
+                automoveis = automovelRepo.searchByNome(term);
+            }
+
+            for (Automovel automovel : automoveis) {
+                    carrosDisponiveis.add(automovel.toString());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return carrosDisponiveis;
     }
 }
