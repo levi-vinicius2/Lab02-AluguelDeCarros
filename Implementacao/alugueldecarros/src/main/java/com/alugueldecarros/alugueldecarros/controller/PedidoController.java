@@ -1,19 +1,19 @@
 package com.alugueldecarros.alugueldecarros.controller;
 
+import com.alugueldecarros.alugueldecarros.model.Automovel;
 import com.alugueldecarros.alugueldecarros.model.Cliente;
 import com.alugueldecarros.alugueldecarros.model.Pedido;
 import com.alugueldecarros.alugueldecarros.model.Usuario;
+import com.alugueldecarros.alugueldecarros.repositories.AutomovelRepositorio;
 import com.alugueldecarros.alugueldecarros.repositories.PedidoRepositorio;
 import com.alugueldecarros.alugueldecarros.repositories.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,22 +73,22 @@ public class PedidoController {
         return "redirect:/pedidos";
     }
 
-    @RequestMapping("/pedidos/form/carrosDisponiveis")
-    @ResponseBody
-    public List<AutoCompleteDTO> cidadesNomeAutoComplete(@RequestParam(value="term", required = false, defaultValue = "") String term) {
-        List<carros> carrosDisponiveis = new ArrayList<>();
-
-        try {
-            if(term.length() >= 1) {
-                automoveis = automovelRepo.searchByNome(term);
-            }
-
-            for (Automovel automovel : automoveis) {
-                    carrosDisponiveis.add(automovel.toString());
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return carrosDisponiveis;
-    }
+//    @RequestMapping("/pedidos/form/carrosDisponiveis")
+//    @ResponseBody
+//    public List<AutoCompleteDTO> cidadesNomeAutoComplete(@RequestParam(value="term", required = false, defaultValue = "") String term) {
+//        List<carros> carrosDisponiveis = new ArrayList<>();
+//
+//        try {
+//            if(term.length() >= 1) {
+//                automoveis = automovelRepo.searchByNome(term);
+//            }
+//
+//            for (Automovel automovel : automoveis) {
+//                    carrosDisponiveis.add(automovel.toString());
+//            }
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//        return carrosDisponiveis;
+//    }
 }

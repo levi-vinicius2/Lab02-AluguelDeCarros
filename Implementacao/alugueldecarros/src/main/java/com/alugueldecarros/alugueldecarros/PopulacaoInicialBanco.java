@@ -1,9 +1,7 @@
 package com.alugueldecarros.alugueldecarros;
 
-import com.alugueldecarros.alugueldecarros.model.Automovel;
-import com.alugueldecarros.alugueldecarros.model.Pedido;
-import com.alugueldecarros.alugueldecarros.model.Role;
-import com.alugueldecarros.alugueldecarros.model.Usuario;
+
+import com.alugueldecarros.alugueldecarros.model.*;
 import com.alugueldecarros.alugueldecarros.repositories.AutomovelRepositorio;
 import com.alugueldecarros.alugueldecarros.repositories.ClienteRepositorio;
 import com.alugueldecarros.alugueldecarros.repositories.PedidoRepositorio;
@@ -59,7 +57,7 @@ public class PopulacaoInicialBanco implements CommandLineRunner {
 //
 //        clienteRepo.save(c1);
 //        clienteRepo.save(c2);
-
+//
 //        Usuario u1 = new Usuario("admin", passwordEncoder.encode("admin"));
 //        u1.setRole(Role.ADMIN.getNome());
 //        usuarioRepo.save(u1);

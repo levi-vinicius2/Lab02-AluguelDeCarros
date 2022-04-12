@@ -9,7 +9,7 @@
 		<version>2.4.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.edu.ifpr.paranavai</groupId>
+	<groupId>com.alugueldecarros</groupId>
 	<artifactId>alugueldecarros</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>alugueldecarros</name>
@@ -61,10 +61,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>

@@ -26,7 +26,7 @@
     <hr>
     <h2>Fazer Pedido</h2>
 
-    <form action="#" th:action="@{/clientes/salvar}" th:object="${cliente}" method="POST">
+    <form action="#" th:action="@{/pedidos/salvar}" th:object="${pedido}" method="POST">
         <input id="carro" type="text" th:field="*{nomeCarro}" placeholder="Carro" class="form-control mb-4 col-4">
         <input id="idCarro" type="hidden" th:field="*{carro}" class="form-control mb-4 col-4">
         <input type="number" step="any" th:field="*{valor}" placeholder="Valor" class="form-control mb-4 col-4">
@@ -35,7 +35,7 @@
         <button type="submit" class="btn btn-info col-2">Salvar</button>
     </form>
     <hr>
-    <a th:href="@{/clientes}">Retornar para a lista de clientes</a>
+    <a th:href="@{/pedidos}">Retornar para a lista de pedidos</a>
 </div>
 </body>
 </html>
