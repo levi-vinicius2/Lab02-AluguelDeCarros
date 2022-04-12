@@ -7,33 +7,20 @@
     <!--/*/ <th:block th:include="fragments/geral.html :: headerfiles">
             </th:block> /*/-->
 
-    <script type="text/javascript">
-	$(function() {
-		$("#nomeDepartamento").autocomplete({
-			source: "automovelNomeAutoComplete",
-			minLength: 3,
-			select: function(event, ui) {
-				this.value = ui.item.label;
-				$("#idDepartamento").val(ui.item.value);
-				return false;
-			}
-		});
-	});
-</script>
+
 
 </head>
 <body>
 <header th:insert="fragments/geral.html :: header"> </header>
 
 <div class="container my-2">
-    <h2>Alterar Papel do Usuário</h2>
+    <h3>Selecione o veiculo que deseja alugar</h3>
     <form action="#" th:action="@{/pedidos/salvar}" th:object="${pedido}" method="POST">
         <input type="hidden" id="id" th:field="*{id}">
 
-        <span th:if="${#fields.hasErrors('automovel')}" th:errors="*{automovel}" class="text-danger"></span>
-            <input id="nomeAutomovel" type="text" th:field="*{nomeAutomovel}" placeholder="Automovel" class="form-control mb-4 col-4">
-        <input id="idAutomovel" type="hidden" th:field="*{automovel}" class="form-control mb-4 col-4">
-
+        <select  th:field="*{automovel}" class="form-control mb-4 col-6">
+            <option th:each="automovel: ${automoveis}" th:value="${automovel.id}" th:text="${automovel.marca} + ' '+ ${automovel.modelo} +' '+ ${automovel.ano} + ' | Placa: ' + ${automovel.placa} + ' | Matrícula: ' + ${automovel.matricula}"></option>
+        </select>
         <button type="submit" class="btn btn-info col-2">Salvar</button>
     </form>
     <hr>

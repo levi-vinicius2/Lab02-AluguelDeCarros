@@ -91,6 +91,9 @@ public class PopulacaoInicialBanco implements CommandLineRunner {
 //        pedidoRepo.save(p1);
 //        pedidoRepo.save(p2);
 
+//        Usuario u3 = new Usuario("maria", passwordEncoder.encode("maria"));
+//        u3.setRole(Role.CLIENTE.getNome());
+//        usuarioRepo.save(u3);
 
     }
 }

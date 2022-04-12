@@ -30,9 +30,8 @@ public class Pedido {
     @Deprecated
     protected Pedido() {}
 
-    public Pedido(Usuario usuario, Automovel automovel ) {
+    public Pedido(Usuario usuario) {
         this.usuario = usuario;
-        this.automovel = automovel;
         this.status = "em análise";
     }
 

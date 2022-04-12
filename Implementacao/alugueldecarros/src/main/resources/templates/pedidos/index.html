@@ -10,7 +10,7 @@
 <body>
 	<header th:insert="fragments/geral.html :: header"> </header>
 	<div class="container my-2">
-		<h4> Gestão dos pedidos de aluguel </h4>
+		<h4> Gestão dos pedidos de aluguel do(a) <span sec:authentication="name">Usuário</span></h4>
 		<a th:href="@{/pedidos/novo}" class="btn btn-primary btn-sm mb-3">Incluir Pedido</a>
 
 		<table border="1" class="table table-striped table-responsive-md">

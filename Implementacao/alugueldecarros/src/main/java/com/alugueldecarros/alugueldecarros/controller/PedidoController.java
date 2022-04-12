@@ -11,8 +11,10 @@ import com.alugueldecarros.alugueldecarros.repositories.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +31,9 @@ public class PedidoController {
     @Autowired
     private UsuarioRepositorio usuarioRepo;
 
-    public PedidoController(PedidoRepositorio pedidoRepo){
+    public PedidoController(PedidoRepositorio pedidoRepo, AutomovelRepositorio automovelRepo){
         this.pedidoRepo = pedidoRepo;
+        this.automovelRepo = automovelRepo;
     }
 
 
@@ -42,7 +45,12 @@ public class PedidoController {
     }
 
     @GetMapping("/pedidos/novo")
-    public String novoPedido(@ModelAttribute("pedido") Pedido pedido) {
+    public String novoPedido(Model model, Principal principal) {
+
+        Usuario u1 = usuarioRepo.findByUsername(principal.getName());
+        model.addAttribute("pedido", new Pedido(u1));
+        model.addAttribute("automoveis", automovelRepo.findAll());
+
         return "pedidos/form";
     }
 
@@ -53,16 +61,23 @@ public class PedidoController {
         if (PedidoOpt.isEmpty()){
             throw new IllegalArgumentException("Pedido invalido!");
         }
-        model.addAttribute("pedidos", PedidoOpt.get());
+        model.addAttribute("pedido", PedidoOpt.get());
+        model.addAttribute("automoveis",  automovelRepo.findAll());
         return "pedidos/form";
     }
 
+
     @PostMapping("/pedidos/salvar")
-    public String salvarPedido(@ModelAttribute("pedidos") Pedido pedido) {
+    public String salvarPedido(@Valid @ModelAttribute("pedido") Pedido pedido, BindingResult bindingResult, Model model, Principal principal) {
+        Usuario u1 = usuarioRepo.findByUsername(principal.getName());
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("automoveis", automovelRepo.findAll());
+            return "pedidos/form";
+        }
+        pedido.setUsuario(u1);
         pedidoRepo.save(pedido);
         return "redirect:/pedidos";
     }
-
 
     @GetMapping("/pedidos/excluir/{id}")
     public String deletarPedido(@PathVariable("id") long id){
@@ -73,26 +88,26 @@ public class PedidoController {
         pedidoRepo.delete(PedidoOpt.get());
         return "redirect:/pedidos";
     }
-
-    @RequestMapping("/pedidos/automovelNomeAutoComplete")
-    @ResponseBody
-    public List<AutoCompleteDTO> automovelNomeAutoComplete(@RequestParam(value="term", required = false, defaultValue = "") String term) {
-        List<AutoCompleteDTO> sugestoes = new ArrayList<>();
-
-        try {
-            if(term.length() >= 3) {
-                automoveisFiltrados = automovelRepo.searchByNome(term);
-            }
-
-            for (Automovel automovel : automoveisFiltrados) {
-                if (automovel.toString().toLowerCase().contains(term.toLowerCase())) {
-                    AutoCompleteDTO dto = new AutoCompleteDTO(automovel.toString(), Long.toString(automovel.getId()));
-                    sugestoes.add(dto);
-                }
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return sugestoes;
-    }
+//
+//    @RequestMapping("/pedidos/automovelNomeAutoComplete")
+//    @ResponseBody
+//    public List<AutoCompleteDTO> automovelNomeAutoComplete(@RequestParam(value="term", required = false, defaultValue = "") String term) {
+//        List<AutoCompleteDTO> sugestoes = new ArrayList<>();
+//
+//        try {
+//            if(term.length() >= 3) {
+//                automoveisFiltrados = automovelRepo.searchByNome(term);
+//            }
+//
+//            for (Automovel automovel : automoveisFiltrados) {
+//                if (automovel.toString().toLowerCase().contains(term.toLowerCase())) {
+//                    AutoCompleteDTO dto = new AutoCompleteDTO(automovel.toString(), Long.toString(automovel.getId()));
+//                    sugestoes.add(dto);
+//                }
+//            }
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//        return sugestoes;
+//    }
 }
