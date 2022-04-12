@@ -86,11 +86,13 @@ public class PopulacaoInicialBanco implements CommandLineRunner {
 //        automovelRepo.save(a3);
 //
 //
-//        Pedido p1 = new Pedido(u2,a1);
-//        Pedido p2 = new Pedido(u2,a3);
+//        Pedido p1 = new Pedido(u2);
+//        Pedido p2 = new Pedido(u2);
+//        p1.setAutomovel(a3);
+//        p2.setAutomovel(a1);
 //        pedidoRepo.save(p1);
 //        pedidoRepo.save(p2);
-
+//
 //        Usuario u3 = new Usuario("maria", passwordEncoder.encode("maria"));
 //        u3.setRole(Role.CLIENTE.getNome());
 //        usuarioRepo.save(u3);
